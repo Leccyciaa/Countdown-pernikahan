@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown Pernikahan</title>
+  <!-- Google Fonts -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"> -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ce0ea4, #ee006f, #c00303);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
+      text-align: center;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-top: 50px;
+      color: #ffe4e1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    #countdown {
+      font-size: 2rem;
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      display: inline-block;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .countdown-item {
+      display: inline-block;
+      margin: 0 10px;
+      min-width: 90px;
+    }
+
+    .number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #fffacd;
+    }
+
+    .label {
+      font-size: 1rem;
+      color: #fefbd8;
+    }
+
+    p {
+        text-align: left;
+        margin: 50px;
+        
+    }
+
+    @media (max-width: 600px) {
+      #countdown {
+        font-size: 1.2rem;
+        padding: 20px;
+      }
+
+      .number {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Menuju Hari Pernikahan Fahri dan Mutiara 💕</h1>
+  <div id="countdown">
+    <div class="countdown-item">
+      <div class="number" id="days">0</div>
+      <div class="label">Hari</div>
+    </div>
+    <div class="countdown-item">
+      <div class="number" id="hours">0</div>
+      <div class="label">Jam</div>
+    </div>
+    <div class="countdown-item">
+      <div class="number" id="minutes">0</div>
+      <div class="label">Menit</div>
+    </div>
+    <div class="countdown-item">
+      <div class="number" id="seconds">0</div>
+      <div class="label">Detik</div>
+    </div>
+  </div>
+
+  <script>
+    const weddingDate = new Date("2030-12-12T07:00:00+07:00");
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("countdown").innerHTML = "Selamat Menikah! 💍";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
